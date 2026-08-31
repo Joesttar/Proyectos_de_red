@@ -1,0 +1,36 @@
+Press RETURN to get started!
+
+
+
+Router>enable
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname R-Central
+R-Central(config)#ip address 192.168.10.1 255.255.255.0
+                      ^
+% Invalid input detected at '^' marker.
+	
+R-Central(config)#interface gigabitEthernet 0/0/0
+R-Central(config-if)#ip address 192.168.10.1 255.255.255.0
+R-Central(config-if)#no shutdown
+
+R-Central(config-if)#
+%LINK-3-UPDOWN: Interface GigabitEthernet0/0/0, changed state to down
+
+R-Central(config-if)#exit
+R-Central(config)#interface gigabitEthernet 0/0/1
+R-Central(config-if)#ip address 192.168.20.1 255.255.255
+                                             ^
+% Invalid input detected at '^' marker.
+	
+R-Central(config-if)#ip address 192.168.20.1 255.255.255.0
+R-Central(config-if)#no shutdown
+
+R-Central(config-if)#
+%LINK-3-UPDOWN: Interface GigabitEthernet0/0/1, changed state to down
+
+R-Central(config-if)#exit
+R-Central(config)#
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1, changed state to up
