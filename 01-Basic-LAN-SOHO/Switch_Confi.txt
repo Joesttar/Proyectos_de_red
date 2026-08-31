@@ -1,0 +1,15 @@
+! --- CONFIGURACION SWITCH CONTABILIDAD ---
+!
+enable
+configure terminal
+!
+hostname SW-CONTABILIDAD
+!
+enable secret cisco123
+!
+banner motd ^C 
+PROPIEDAD DE EMPRESA - RED DE CONTABILIDAD (SEGMENTO 10)
+^C
+!
+exit
+copy running-config startup-config

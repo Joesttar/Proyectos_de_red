@@ -1,0 +1,15 @@
+! --- CONFIGURACION SWITCH RRHH ---
+!
+enable
+configure terminal
+!
+hostname SW-RRHH
+!
+enable secret cisco123
+!
+banner motd ^C 
+PROPIEDAD DE EMPRESA - RED DE RRHH (SEGMENTO 20)
+^C
+!
+exit
+copy running-config startup-config
