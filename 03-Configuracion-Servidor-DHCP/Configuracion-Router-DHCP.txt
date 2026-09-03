@@ -1,0 +1,55 @@
+
+Press RETURN to get started!
+
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1, changed state to up
+
+
+R-Central>ip dhcp excluded-address 192.168.10.1 192.168.10.10
+             ^
+% Invalid input detected at '^' marker.
+	
+R-Central>enable
+R-Central#ip dhcp excluded-address 192.168.10.1 192.168.10.10
+             ^
+% Invalid input detected at '^' marker.
+	
+R-Central#config terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+R-Central(config)#ip dhcp excluded-address 192.168.10.1 192.168.10.10
+R-Central(config)#ip dhcp pool POOL-CONTABILIDAD
+R-Central(dhcp-config)#network 192.168.10.0 255.255.255.0
+R-Central(dhcp-config)#default-router 192.168.10.1
+R-Central(dhcp-config)#dns-server 8.8.8.8
+R-Central(dhcp-config)#dns-server 8.8.8.8
+R-Central(dhcp-config)#exit
+R-Central(config)#ip dhcp pool POOL-RRHH
+R-Central(dhcp-config)#network 192.168.20.0 255.255.255.0
+R-Central(dhcp-config)#default-router 192.168.20.1
+R-Central(dhcp-config)#exit 
+R-Central(config)#ip dhcp excluded-address 192.168.20.1 192.168.20.10
+R-Central(config)#ip dhcp pool POOL-RRHH
+R-Central(dhcp-config)#network 192.168.20.0 255.255.255.0
+R-Central(dhcp-config)#default-router 192.168.20.1
+R-Central(dhcp-config)#dns-server 8.8.8.8
+R-Central(dhcp-config)#exit
+R-Central(config)#%DHCPD-4-PING_CONFLICT: DHCP address conflict:  server pinged 192.168.10.11.
+
+R-Central(config)#show ip dhcp binding
+                   ^
+% Invalid input detected at '^' marker.
+	
+R-Central(config)#exit
+R-Central#
+%SYS-5-CONFIG_I: Configured from console by console
+
+R-Central#show ip dhcp binding
+IP address       Client-ID/              Lease expiration        Type
+                 Hardware address
+192.168.10.12    0090.2126.4C7B           --                     Automatic
+192.168.10.13    0060.3ECC.0621           --                     Automatic
+192.168.20.11    00D0.975A.34E3           --                     Automatic
+192.168.20.12    0010.1149.4645           --                     Automatic
+R-Central#
