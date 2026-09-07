@@ -1,0 +1,63 @@
+! --- CONFIGURACION SW-ACCESO-01 ---
+enable
+configure terminal
+hostname SW-ACCESO-01
+enable secret cisco123
+
+banner motd ^C
+==========================================================
+* SW-ACCESO-01: ACCESO RESTRINGIDO - SEGMENTACION VLANs *
+==========================================================
+^C
+
+! 1. Crear Base de Datos de VLANs
+vlan 10
+ name CONTABILIDAD
+vlan 20
+ name RRHH
+vlan 30
+ name SERVIDORES
+vlan 99
+ name GESTION_NATIVE
+exit
+
+! 2. Configurar Puertos de Acceso
+interface FastEthernet0/10
+ switchport mode access
+ switchport access vlan 10
+ description PC-Contabilidad-1
+ no shutdown
+
+interface FastEthernet0/20
+ switchport mode access
+ switchport access vlan 20
+ description PC-RRHH-1
+ no shutdown
+
+interface FastEthernet0/5
+ switchport mode access
+ switchport access vlan 30
+ description SRV-CENTRAL
+ no shutdown
+
+! 3. Configurar Puertos Troncales
+interface GigabitEthernet0/1
+ switchport mode trunk
+ switchport trunk native vlan 99
+ description Enlace-Hacia-Router
+ no shutdown
+
+interface GigabitEthernet0/2
+ switchport mode trunk
+ switchport trunk native vlan 99
+ description Enlace-Hacia-SW-ACCESO-02
+ no shutdown
+
+! 4. IP de Administración (VLAN 99)
+interface vlan 99
+ ip address 192.168.99.2 255.255.255.0
+ no shutdown
+
+ip default-gateway 192.168.99.1
+exit
+copy running-config startup-config
