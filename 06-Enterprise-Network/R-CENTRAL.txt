@@ -1,0 +1,18 @@
+Comandos para el Router central
+
+enable
+configure terminal
+hostname R-CENTRAL
+username admin privilege 15 secret cisco123
+crypto key generate rsa //Esto es del SSHv2
+
+Nos pedira el tamaño de bits que queremos podemos usar de 1024 o 2048
+
+despues las sesiones virtuales
+
+line vty 0 4
+login local
+transport input ssh
+exit
+
+
