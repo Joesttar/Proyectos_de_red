@@ -1,0 +1,19 @@
+=================================
+CONFIGURE PORT SECURITY
+=================================
+
+SW-ACCESO-01
+enable
+configure terminal
+switchport access mode
+
+switchport port-security
+
+switchport port-security maximum 1
+switchport port-security mac-address sticky
+switchport port-security violation shutdown
+
+exit
+exit
+
+show port-security interface FastEthernet0/1 
