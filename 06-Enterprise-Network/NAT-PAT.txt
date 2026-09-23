@@ -1,0 +1,30 @@
+===================================================
+CONFIGURACION DE TRADUCTORES DE DIRECCIONES NAT/PAT
+===================================================
+/*NAT - Network Address Translation Toma multiples direcciones IP privadas de una red local
+y las convierte en una sola dirección IP*/
+
+/*PAT - Port Address Translation Tecnica que permite que cientos
+o miles de dispositivos internos compartan UNA sola IP publica al 
+mismo tiempo*/
+
+enable
+password
+
+//Creamos un ACL estándar que actúa como un filtro de selección
+//Le dice al router Solo los paquetes que vengan de la subred 192.168.10.0/24
+//tiene permiso de ser traducidos hacia internet
+
+access-list 1 permit 192.168.10.0 0.0.0.255
+
+//Marcamos la puerta de entrada interna al router
+interface GigabitEthernet 0/0.10 
+ip nat inside
+
+//Marcamos la puerta de salida externa al router
+interface GigabitEthernet 0/0.10
+ip nat outside
+exit
+
+//Unimos todo en una sola regla
+ip nat inside source list 1 interface GigabitEthernet 0/1 overload
