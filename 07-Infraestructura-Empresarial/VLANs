@@ -1,0 +1,19 @@
+===============================
+Configuracion de VLANs
+===============================
+enable
+condfigure terminal
+hostname ASW-ACC-01
+
+vlan 10
+name VLAN_RRHH
+vlan 20
+name VLAN_SISTEMAS
+vlan 30
+name VLAN_VENTAS
+vlan 50
+name VLAN_SERVIDORES
+vlan 99
+name VLAN_MGMT
+exit
+ 
